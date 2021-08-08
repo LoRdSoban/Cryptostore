@@ -14,7 +14,7 @@ These two libraries are essential for the program to work.
 
 ## Not implemented  yet.
 
-Further, The project intended to implent a working mining client, which could process the transactions between user and service providers. However, I wasn'table to complete these features in time because of inexperience. This was my first hackathon btw. ;)
+Further, The project intended to implent a working mining client, which could process the transactions between user and service providers. However, I wasn't able to complete these features in time because of inexperience. This was my first hackathon and also first-time building a blockchain related project too btw 😁. But I would love to be part Clarity cohort if given the chance too.  
 
 
 **Soban Amir| Batch 2025 | FAST NUCES (CFD CAMPUS)**
