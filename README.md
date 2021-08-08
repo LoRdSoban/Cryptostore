@@ -17,6 +17,6 @@ These two libraries are essential for the program to work.
 Further, The project intended to implent a working mining client, which could process the transactions between user and service providers. However, I wasn'table to complete these features in time because of inexperience. This was my first hackathon btw. ;)
 
 
-##Soban Amir
-##Batch 2025
-##FAST NUCES (CFD CAMPUS)
+## Soban Amir
+## Batch 2025
+## FAST NUCES (CFD CAMPUS)
