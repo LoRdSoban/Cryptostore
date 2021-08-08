@@ -11,13 +11,13 @@ banner =  '''
 \___/_/  \_, / .__/\__/\___/_//_/\___/_/_/_/\__/_/ /___/
         /___/_/                                         
 
-A online marketplace for services backed by bloackchain '''
+A online marketplace for services backed by blockchain!\n\n '''
      
 
 def generate_key(user_name):
     rnd = Random.new().read
-    print(type)
-    print(rnd)
+    #print(type)
+    #print(rnd)
     keyPair = RSA.generate(1024, rnd )
     pubKey = keyPair.publickey()
 
@@ -32,7 +32,7 @@ def generate_key(user_name):
     with open(pub_name, 'a') as pu:
         pu.write(pubKeyPEM)
 
-
+    print("\nPrivate and Public keys are generated and stored" )
     return priv_name, pub_name
 
 
@@ -44,9 +44,13 @@ def login():
 
         found = False
         for row in csv_reader:
+
+
             if row != []:
+
                 if username_entered == row[0]:
                     found = True
+                    print("\nUser already exists. Logged in...\n")
                     start(username_entered, row[1], row[2])
 
         if found == False:
@@ -68,11 +72,12 @@ def start(user_name, priv, pub):
     priv_key = RSA.import_key(open(priv_name, 'r').read())
     pub_key = RSA.import_key(open(pub_name , 'r').read())
 
-    print()
-    print(type(priv_key))
-    print()
-    print(type(pub_key))
-    print(type(pub_key))
+    print("Private and public keys are loaded successfully!\n\n")
+
+
+    #print(type(priv_key))
+    #print(type(pub_key))
+    #print(type(pub_key))
  
 
 
@@ -81,8 +86,10 @@ def start(user_name, priv, pub):
 def main():
 
     print(banner)
-    login()
 
+    login()
+    
+    input("Press ENTER to exit.") #Stops program from exiting
 
 
 
