@@ -2,12 +2,7 @@
 import csv
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
-import binascii
 from Crypto import Random
-
-
-
-
 
 banner =  '''
   _____              __                                 
@@ -19,46 +14,32 @@ banner =  '''
 A online marketplace for services backed by bloackchain '''
      
 
-def generate_key():
+def generate_key(user_name):
     rnd = Random.new().read
     print(type)
     print(rnd)
     keyPair = RSA.generate(1024, rnd )
     pubKey = keyPair.publickey()
 
-    pubKeyPEM = pubKey.exportKey()
-    keyPairPEM = keyPair.exportKey()
-    print()
-    print(type(keyPair))
-    print()
-    print(type(pubKey))
+    keyPairPEM = keyPair.exportKey().decode()
+    pubKeyPEM = pubKey.exportKey().decode()
 
-    return keyPairPEM.decode('ascii'), pubKeyPEM.decode('ascii')
-    #print(f"Public key:  (n={hex(pubKey.n)}, e={hex(pubKey.e)})")
-    #pubKeyPEM = pubKey.exportKey()
-    #print(pubKeyPEM.decode('ascii'))
-    
-    #print(f"Private key: (n={hex(pubKey.n)}, d={hex(keyPair.d)})")
-    #privKeyPEM = keyPair.exportKey()
-    #print(privKeyPEM.decode('ascii'))
-    
-    #encryption
-    #msg = b'A message for encryption'
-    #encryptor = PKCS1_OAEP.new(pubKey)
-    #encrypted = encryptor.encrypt(msg)
-    #print("Encrypted:", binascii.hexlify(encrypted))
+    priv_name = 'priv_'+ user_name +'.pem'
+    pub_name = 'pub_'+ user_name +'.pem'
+    with open(priv_name, 'a') as pr:
+        pr.write(keyPairPEM)
 
-    #print()
+    with open(pub_name, 'a') as pu:
+        pu.write(pubKeyPEM)
 
 
-    #decryptor = PKCS1_OAEP.new(keyPair)
-    #decrypted = decryptor.decrypt(encrypted)
-    #print(decrypted.decode("utf-8"))
+    return priv_name, pub_name
 
 
 def login():
     username_entered = input("Enter your username:")
-    with open('names.csv') as csv_file:
+
+    with open('names.csv', 'r') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
 
         found = False
@@ -73,7 +54,7 @@ def login():
 
 def register(user_name):
 
-    priv, pub = generate_key()
+    priv, pub = generate_key(user_name)
     with open('names.csv', mode='a') as csv_file:
         csv_writer = csv.writer(csv_file, delimiter=',') 
         csv_writer.writerow([user_name, priv, pub])
@@ -82,37 +63,24 @@ def register(user_name):
 
             
 def start(user_name, priv, pub):
-        #encryption
-    #msg = b'A message for encryption'
-    #encryptor = PKCS1_OAEP.new(pub)
-    #encrypted = encryptor.encrypt(msg)
-    #print("Encrypted:", binascii.hexlify(encrypted))
-    keyPair = RSA.import_key
-    keyPairPEM = priv.encode('ascii')
-    keyPair = keyPairPEM.importKey()
-    print()
-    print(type(keyPair))
-    print()
-    #print(type(pubKey))
+    priv_name = 'priv_'+ user_name +'.pem'
+    pub_name = 'pub_'+ user_name +'.pem'
+    priv_key = RSA.import_key(open(priv_name, 'r').read())
+    pub_key = RSA.import_key(open(pub_name , 'r').read())
 
-    #return keyPairPEM.decode('ascii'), pubKeyPEM.decode('ascii')
-
-    print(type(priv))
     print()
-    print(type(pub))
+    print(type(priv_key))
     print()
+    print(type(pub_key))
+    print(type(pub_key))
+ 
 
-
-    #decryptor = PKCS1_OAEP.new(priv)
-    #decrypted = decryptor.decrypt(encrypted)
-    #print(decrypted.decode("utf-8"))
-    
 
 
 
 def main():
-    print(banner)
 
+    print(banner)
     login()
 
 
