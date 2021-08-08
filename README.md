@@ -1,7 +1,7 @@
 # Cryptonomers
 A project for Stacks #Hack4Impact hackathon arranged by IEEE LUMS.
 
-###The idea was to create an online marketplace for services backed by blockchain.
+### The idea was to create an online marketplace for services backed by blockchain.
 
 The program is using RSA assymettric ecryption. The pubic and private key are stored as ".pem" files. A example user has been created by the name "soban". You can see the basic information about the user is stored in "names.csv" and the public and private keys of the user are also created.
 
